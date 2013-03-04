@@ -1,0 +1,150 @@
+<div>
+    <form action="" name="dataForm" method="post" autocomplete="on" accept-charset="utf-8" id="dataForm">
+        <table width="1000" align="center" cellpadding="1" cellspacing="0" border="1" id="dataTable">
+            <caption>Data</caption>
+            <tbody>
+                <tr>
+                    <td>Input Date</td>
+                    <td><input type="text" id="inputDate" class="date" required="required" /></td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td><select id="status" required="required" onchange="setValidationRules()"></select></td>
+                </tr>
+                <tr>
+                    <td>Category</td>
+                    <td>
+                        <select id="categories" required="required"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sub-Category</td>
+                    <td>
+                        <select id="subCategories" required="required"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sales</td>
+                    <td>
+                        <input type="text" id="sales" required="required" size="40" onblur="validateSalesNames(this.id)"/>
+                        <input type="hidden" id="salesId"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Signed By</td>
+                    <td>
+                        <select id="signedBy" required="required"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Merchants</td>
+                    <td>
+                        <select id="merchants" class="fullWidth" required="required"></select><button onclick="showAddMerchantDialog()">Add</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="width30p">Deal Description</td>
+                    <td><textarea maxlength="2000" rows="3" id="description" class="fullWidth" required="required"></textarea></td>
+                </tr>
+                <tr>
+                    <td>Commission</td>
+                    <td><input id="comm" type="text" placeholder="00.00%" onblur="formatValue('percentage', this.id)" required="required"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        Deal Commitment
+                    </td>
+                    <td>
+                        <input type="checkbox" value="Y" id="DC" name="DC" onclick="toggleDCMultiplier()"/>
+                        <input type="text" size="3" value="2.0" maxlength="3" class="invisible paddingLeft10" 
+                               id="DCMultiplier" placeholder="2.0" onblur="validate('float', this.id)"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Top Merchant Campaign</td>
+                    <td>
+                        <input type="checkbox" value="Y" id="TMC" name="TMC"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>New Merchant</td>
+                    <td>
+                        <input type="radio" name="newMerchant" value="Y" />Yes
+                        <input type="radio" name="newMerchant" value="N" class="paddingLeft10" checked="checked"/>No
+                    </td>
+                </tr>
+                <tr>
+                    <td>Days to get contract signed</td>
+                    <td><input type="text" id="days" onblur="validate('integer', this.id)" maxlength="3"/></td>
+                </tr>
+<!--            <tr>
+                    <td>QA</td>
+                    <td>
+                        <input type="checkbox" value="Y" id="QA" name="QA"/>
+                    </td>
+                </tr>-->  
+                <tr>
+                    <td>Forecast Price</td>
+                    <td><input type="text" id="fPrice" onblur="formatValue('currency', this.id)" maxlength="6" required="required"/></td>
+                </tr>
+                <tr>
+                    <td>Forecasted Quantity</td>
+                    <td><input type="text" id="fQty" onblur="validate('integer', this.id)" maxlength="6" required="required"/></td>
+                </tr>
+                <tr>
+                    <td>Forecasted Gross Profit</td>
+                    <td><input type="text" readonly="readonly" id="fGP"/><button onclick="calculateFGP()">Calculate</button></td>
+                </tr>
+                <tr>
+                    <td>Forecasted Points</td>
+                    <td><input type="text" readonly="readonly" id="fPt"/></td>
+                </tr>
+                <tr>
+                    <td>Forecasted Points with Deal Commitment</td>
+                    <td><input type="text" readonly="readonly" id="fPTDC" placeholder="N.A."/></td>
+                </tr>
+                <tr>
+                    <td>Actual Gross Profit</td>
+                    <td><input type="text" id="AGp" maxlength="7" onblur="validate('integer', this.id);calculateAGp(this.value);formatValue('currency', this.id)"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        Actual Point
+                    </td>
+                    <td>
+                        <input type="text" id="APt" readonly="readonly"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tentative Feature Date</td>
+                    <td><input type="text" id="tentativeDate" class="date"/></td>
+                </tr>
+                <tr>
+                    <td>Feature Date</td>
+                    <td><input type="text" id="featureDate" class="date"/></td>
+                </tr>
+                <tr>
+                    <td>Sales Force Contract</td>
+                    <td><input type="text" id="sfContract" maxlength="11" required="required" onblur="validateSfContract(this.id)"/></td>
+                </tr>
+                <tr>
+                    <td>Deal Commitment Remarks</td>
+                    <td><input type="text" size="40" id="remarks"/></td>
+                </tr>
+                <tr>
+                    <td>Remarks2</td>
+                    <td><textarea maxlength="2000" rows="3" id="remarks2" class="fullWidth"></textarea></td>
+                </tr>
+                <tr>
+                    <td>Remarks3</td>
+                    <td><textarea maxlength="2000" rows="3" id="remarks3" class="fullWidth"></textarea></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="Save Data" id="saveDealData" formmethod="post"/>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
